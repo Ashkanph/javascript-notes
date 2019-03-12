@@ -524,6 +524,68 @@ console.log(admin); // { name: "John" }
 
 ---
 
+### Events (Bubbling, capture and delegation)
+
+* **`Event capturing`**: The browser checks if `<html>` has an onclick event handler in the capturing phase, and runs it if so. Then moves on to the next elements until it reaches the element that was actually clicked on.
+
+* **`Event bubbling`**: The browser first checks the element if has a registered event handler in the bubbling phase, and runs it if so.
+Then moves on to the next ancestors until it reaches the `<html>` element.
+
+    * With `stopPropagation`, the event doesn't bubble any further up the chain, so no more handlers will be run.
+
+    ```javascript
+        video.onclick = function(e) {
+            e.stopPropagation();
+            video.play();
+        };
+    ```
+
+* In old times, Netscape only used event capturing, and Internet Explorer used only event bubbling. Now modern browsers use event bubbling. If you want to register an event in the capturing phase instead, you can use addEventListener(), and setting the optional third property to true.
+
+* **`Event delegation`**: Set the event listener on parent of a number of chils elements, and have events that happen on them bubble up to their parent, rather than having to set the event listener on every child individually.
+
+    ```javascript
+    // For example if fyou have a list
+    document.getElementById("parent-list").addEventListener("click", function(e) {
+        // e.target is the clicked element!
+        // If it was a list item
+        if(e.target && e.target.nodeName == "LI") {
+            // List item found!  Output the ID!
+            console.log("List item ", e.target.id.replace("post-", ""), " was clicked!");
+        }
+    });
+    ```
+
+    ```javascript
+    // Get the parent DIV, add click listener...
+    document.getElementById("myDiv").addEventListener("click",function(e) {
+        // e.target was the clicked element
+    if (e.target && e.target.matches("a.classA")) {
+        console.log("Anchor element clicked!");
+        }
+    });
+    ```
+
+* **`preventDefault`**: To stop an event doing what it does by default. 
+
+    * The most common example is that of a web form. We can use `preventDefault` to prevent submitting the form when the input data is wrong:
+   
+        ```javascript
+        var form = document.querySelector('form');
+        var fname = document.getElementById('fname');
+        var lname = document.getElementById('lname');
+        var para = document.querySelector('p');
+
+        form.onsubmit = function(e) {
+            if (fname.value === '' || lname.value === '') {
+                e.preventDefault();
+                para.textContent = 'You need to fill in both names!';
+            }
+        }
+        ``` 
+
+---
+
 ```javascript
 let user = {
   name: "John",
@@ -531,4 +593,24 @@ let user = {
 }
 
 (user.go)() // Error! There must be a ; after user definition }
+```
+
+---
+
+```javascript
+console.log(-1<0<1);  // false
+/*
+ * Why?
+ * 
+ * Because:
+ *      -1<0<1 => true<1 => 1<1 => false
+ */
+
+console.log(1>2>3);  // false
+/*
+ * Why?
+ * 
+ * Because:
+ *      1>2>3 => false>3 => 0>3 => false
+ */
 ```
