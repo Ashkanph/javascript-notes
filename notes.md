@@ -614,3 +614,23 @@ console.log(1>2>3);  // false
  *      1>2>3 => false>3 => 0>3 => false
  */
 ```
+
+---
+
+```javascript
+['1', '7', '11'].map(parseInt); // [1, NaN, 3]
+/*
+ * Why?
+ * 
+ * Because:
+ *    Map passes three arguments into parseInt() on each iteration (val, index, array).
+ *    ParseInt takes two arguments (string and radix).
+ *
+ *    parseInt('1', 0, ['1', '7', '11']);   => parseInt('1', 0) => 0 is falsy, So parseInt uses the default radsix (10) => 1
+ *
+ *    parseInt('7', 1, ['1', '7', '11']);   => parseInt('7', 1) => In a radix 1 system, the symbol '7' does not exist => NaN
+ * 
+ *    parseInt('11', 2, ['1', '7', '11']);  => parseInt('11', 2) => 3
+ */
+```
+
