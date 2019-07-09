@@ -634,3 +634,32 @@ console.log(1>2>3);  // false
  */
 ```
 
+---
+
+```javascript
+x = (3, 4);
+
+console.log(x); // 4
+/*
+ * Why?
+ * 
+ * Because:
+ *    This is comma operand. The comma operator evaluates each of its operands (from left to right) and 
+ *    returns the value of the last operand.
+ */
+```
+
+---
+
+```javascript
+
+// The Array.of() method creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
+// Array.of() is an ES6 function
+Array.of(7);       // [7] 
+Array.of(1, 2, 3); // [1, 2, 3]
+
+Array(7);          // [ , , , , , , ] <= An empty array with a length property of 7 
+Array(1, 2, 3);    // [1, 2, 3]
+
+console.log(Array(3).fill(6));   //  [6, 6, 6]
+```
