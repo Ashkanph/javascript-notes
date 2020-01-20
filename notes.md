@@ -63,6 +63,16 @@ Using a variable before its declaration.
   var y=function(){return "hi"}; // function expression
   ```
 
+* `let` can not be hoisted:
+
+  ```javascript
+  var name = "Chavan";
+  {
+      name = "Ashkan";   // TDZ error (temporal dead zone)
+      let name;
+  }
+  ```
+
 ---
 
 ### Falsy and truthy values
@@ -123,7 +133,7 @@ NaN
 
 * Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
   
-  * Nedds polyfill for IE9, IOS 5 and Android
+  * Needs polyfill for IE9, IOS 5 and Android
 
   ```javascript
   /* css
@@ -487,6 +497,7 @@ new Map([iterable])
         let result = await promise; // Syntax error
       }
       ```
+
 ### Function composition
 
   * Function composition is a mechanism of combining multiple simple functions to build a more complicated one. The result of each function is passed to the next one. In mathematics, we often write something like: `f(g(x))`.
@@ -583,6 +594,48 @@ Then moves on to the next ancestors until it reaches the `<html>` element.
             }
         }
         ``` 
+
+---
+
+### Equality
+
+* It is wrong to say:
+  * == checks value (loose)
+  * === checkes value and type (strict)
+
+* say instead:
+  * == allows coercion (types different)
+  * === disallows coercion (types same)
+
+* Avoid equality corner cases:
+  * Avoid
+    * == with 0 or "" (or even " ")
+    * == with non-primitives
+    * == true or == false : allow ToBoolean or use ===
+      * Don't use val == true and val == false; Because all of the scenarios can be done by val or !val
+
+* If you don't know the type(s) in a comparison: === is the only reasonable choise
+* == is faster than === (If both have same types, use ==; except than the above avoid cases)
+
+---
+
+### Const
+
+* const means we cant reasign it; but it still can be mutated!
+ * It is better to use it only Primitive types like String, Booleans and Numbers
+
+```javascript
+const names = ["Ashkan", "avogado6"];
+names[1] = "Chavan";  // no problem
+```
+
+---
+
+### The unary plus operator
+
+The unary plus operator precedes its operand and evaluates to its operand but attempts to convert it into a number
+
++'3'  ==> 3
 
 ---
 
