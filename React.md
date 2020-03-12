@@ -1,5 +1,27 @@
 
 
+### Lifecycle of Components
+
+#### Mounting
+
+* `constructor()`
+* `getDerivedStateFromProps()`
+* `render()`
+* `componentDidMount()`
+
+#### Updating
+
+* `getDerivedStateFromProps()`
+* `shouldComponentUpdate()`
+* `render()`
+* `getSnapshotBeforeUpdate()`
+* `componentDidUpdate()`
+
+#### Unmounting
+
+* `componentWillUnmount()`
+
+
 ### Immutability benefits
 
 * Complex Features Become Simple. (For example undoing a certain action)
