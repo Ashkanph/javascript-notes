@@ -283,8 +283,18 @@
 ### Forwarding Refs
 
 * A technique for automatically passing a ref through a component to one of its children.
+* React.forwardRef creates a React component that forwards the ref attribute it receives to another component below in the tree (is not very common).
+    ```
+    const FancyButton = React.forwardRef((props, ref) => (
+    <button ref={ref} className="FancyButton">
+        {props.children}
+    </button>
+    ));
 
-[Read more](https://reactjs.org/docs/forwarding-refs.html)
+    // You can now get a ref directly to the DOM button:
+    const ref = React.createRef();
+    <FancyButton ref={ref}>Click me!</FancyButton>;
+    ```
 
 ---
 
@@ -360,42 +370,33 @@
 
 * [Read more](https://reactjs.org/docs/uncontrolled-components.html)
 
-
----
-
-### Hook
-
-* Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class.
-
-  ```javascript
-  import React, { useState } from 'react';
-
-  function Example() {
-    // Declare a new state variable, which we'll call   "count"
-    const [count, setCount] = useState(0);
-
-    return (
-      <div>
-        <p>You clicked {count} times</p>
-        <button onClick={() => setCount(count + 1)}>
-          Click me
-        </button>
-      </div>
-    );
-  }
-  ```
-
 ---
 
 ### React.memo and PureComponent
 
-* Class components can bail out from rendering when their input props are the same using PureComponent or shouldComponentUpdate. Now you can do the same with function components by wrapping them in React.memo.
+* React.PureComponent is similar to React.Component. The difference between them is that React.Component doesn’t implement shouldComponentUpdate(), but React.PureComponent implements it with a shallow prop and state comparison.
 
+* You can do the same with function components by wrapping them in React.memo.
   ```javascript
   const MyComponent = React.memo(function MyComponent(props) {
     /* only rerenders if props change */
   });
   ```
+  * By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument:
+    ```javascript
+    function MyComponent(props) {
+      /* render using props */
+    }
+    function areEqual(prevProps, nextProps) {
+      /*
+      return true if passing nextProps to render would return
+      the same result as passing prevProps to render,
+      otherwise return false
+      */
+    }
+    export default React.memo(MyComponent, areEqual);
+    ```
+
 
 ---
 
