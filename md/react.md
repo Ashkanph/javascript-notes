@@ -15,6 +15,7 @@
 * `shouldComponentUpdate()`
 * `render()`
 * `getSnapshotBeforeUpdate()`
+  * It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to componentDidUpdate(). [read more](https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
 * `componentDidUpdate()`
 
 #### Unmounting

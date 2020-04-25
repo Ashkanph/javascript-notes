@@ -705,7 +705,6 @@ console.log(x); // 4
 ---
 
 ```javascript
-
 // The Array.of() method creates a new Array instance with a variable number of arguments, regardless of number or type of the arguments.
 // Array.of() is an ES6 function
 Array.of(7);       // [7] 
@@ -716,3 +715,21 @@ Array(1, 2, 3);    // [1, 2, 3]
 
 console.log(Array(3).fill(6));   //  [6, 6, 6]
 ```
+
+---
+
+* `Optional chaining (?.)` permits reading the value of a property located deep within a chain of connected objects without having to expressly validate that each reference in the chain is valid
+  ```javascript
+  let customerCity = customer.details?.address?.city;
+  ```
+
+* `nullish coalescing operator (??)` is a logical operator that returns its right-hand side operand when its left-hand side operand is `null` or `undefined`, and otherwise returns its left-hand side operand.
+  ```javascript
+  const customerCity = customer?.city ?? "Unknown city";
+  ```
+  * Contrary to the `logical OR (||) operator`, the left operand is returned if it is a falsy value which is not `null` or `undefined`
+
+---
+
+* [Throttling and Debouncing Event Action in JavaScript](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)
+
