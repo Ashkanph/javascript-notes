@@ -64,7 +64,7 @@
 
 * useMemo
   * Returns a memoized value.
-  * تنها در صورتی که مقادیر داخل آرایه تغییر کرده باشند دوباره محاسبه می‌کند
+  * تنها در صورتی که مقادیر داخل آرایه تغییر کرده باشند دوباره محاسبه می‌کند. اگر آرایه را خالی بگذاریم فقط یک بار و اگر آرایه‌ای ندیم هربار با هر رندر دوباره اجرا می‌شود و هر بار اون مقدار رو از سر می‌سازه
     ```
     const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
     ```
@@ -126,4 +126,36 @@
     useDebugValue(date, date => date.toDateString());
     ```
 
+---
 
+```javascript
+const { useState, useEffect, useLayoutEffect } = React;
+const Parent = props => {
+    console.log("Parent");
+    useEffect(() => console.log("Parent useEffect"));
+    useLayoutEffect(() => console.log("Parent useLayoutEffect"));
+
+    return (
+        <div>
+            <h2>Parent</h2>
+            <Child />
+        </div>
+    );
+};
+const Child = () => {
+    console.log("Child");
+    useEffect(() => console.log("Child useEffect"));
+    useLayoutEffect(() => console.log("Child useLayoutEffect"));
+
+    return <p>Child</p>
+};
+ReactDOM.render(<Parent />, document.getElementById("root"));
+
+/*
+ * What will be logged?
+ *
+ * Parent, Child, Child useLayoutEffect, Parent useLayoutEffect, Child useEffect, Parent useEffect
+ *
+ * https://codepen.io/dshook/pen/eYpNLMZ?editors=1011
+ */
+```
