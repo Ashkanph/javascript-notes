@@ -733,3 +733,16 @@ console.log(Array(3).fill(6));   //  [6, 6, 6]
 
 * [Throttling and Debouncing Event Action in JavaScript](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)
 
+---
+
+* To have dynamic property names:
+   ```javascript
+   const dynamic = 'color';
+   var item = {
+     brand: 'Ford',
+     [dynamic]: 'Blue'
+   }
+   console.log(item); 
+   // { brand: "Ford", color: "Blue" }
+   ```
+
