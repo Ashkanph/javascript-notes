@@ -127,3 +127,68 @@ println!("{} and {}", r1, r2);
 let r3 = &mut s; // no problem
 println!("{}", r3);
 ```
+
+## Slice
+* A string slice is a reference to part of a String. The type of “string slice” is &str which is an immutable reference.
+* تایپ اسلایس جنرال هم وجود دارد در نتیجه مثلا اسلایس‌های آرایه هم داریم
+
+```rust
+let s = String::from("hello");
+let len = s.len();
+
+// &s[0..2] == &s[..2]
+// &s[3..len] == &s[3..]
+// &s[0..len] == &s[..]
+```
+
+* The first word of a sentence:
+
+```rust
+// fn first_word(s: &String) -> &str { این هم کار می‌کند ولی فقط برای استرینگها و نه استرینگ لیترال ها. اما خط پایینی هم برای اسلایس‌های استرینگ‌ها کار می‌کند و هم برای استرینگ لیترال ها که تایپشان اسلایس هست
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+```
+
+* Recall from the borrowing rules that if we have an immutable reference to something, we cannot also take a mutable reference.
+
+```rust
+fn main() {
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s); // اینجا ما اس را بصورت ایممیوتیبل دادیم به تابع
+
+    s.clear(); // error! پس نمی‌توانیم اینجا بصورت میوتیبل به اس پاسش بدیم.
+    // چرا؟ چون ممکنه بعدا دوباره آن اس ایممیوتیبل را مورد استفاده قرار دهیم و به همین دلیل راست در زمان کامپایل جلویش را می‌گیرد. مثل خط بعد که استفاده شده
+
+    println!("the first word is: {}", word);
+}
+```
+
+* The type string literals is &str
+
+```rust
+fn main() {
+    let my_string = String::from("hello world");
+
+    // first_word works on slices of `String`s
+    let word = first_word(&my_string[..]);
+
+    let my_string_literal = "hello world";
+
+    // first_word works on slices of string literals
+    let word = first_word(&my_string_literal[..]);
+
+    // Because string literals *are* string slices already,
+    // this works too, without the slice syntax!
+    let word = first_word(my_string_literal);
+}
+```
