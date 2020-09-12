@@ -746,3 +746,46 @@ console.log(Array(3).fill(6));   //  [6, 6, 6]
    // { brand: "Ford", color: "Blue" }
    ```
 
+---
+
+* How to achieve this?
+   ```javascript
+    console.log(obj.a, obj.a, obj.a);
+    // 1 2 3
+
+    // There are three ways.
+
+    // 1- accessor property
+    let obj = {
+      _initValue: 0,
+      get a() {
+        this._initValue++;
+        return this._initValue
+      }
+    }
+   
+    // 2- Object.defineProperty
+    let obj = {}
+    Object.defineProperty(obj, 'a', {
+      get: (function(){
+        let initValue = 0;
+        return function(){
+          initValue++;
+          return initValue
+        }
+      })()
+    })
+
+    // 3- Proxy
+    let initValue = 0;
+    let obj = new Proxy({}, {
+      get: function(item, property, itemProxy){
+        if(property === 'a'){
+          initValue++;
+          return initValue
+        }
+        return item[property]
+      }
+    })
+   ```
+
