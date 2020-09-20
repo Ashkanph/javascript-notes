@@ -637,6 +637,15 @@ The unary plus operator precedes its operand and evaluates to its operand but at
 
 +'3'  ==> 3
 
+  * It can be used to remove trailing zeros from a float number
+
+  ```javascript
+    +"00000.050000"
+    // 0.05
+    +0.050000
+    // 0.05
+  ```
+
 ---
 
 ```javascript
