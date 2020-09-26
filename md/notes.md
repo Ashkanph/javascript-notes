@@ -798,3 +798,28 @@ console.log(Array(3).fill(6));   //  [6, 6, 6]
     })
    ```
 
+---
+
+* What is the difference between PUT and POST?
+
+  * `PUT`: Replaces target resource with the request payload. Can be used to update or create a new resource.
+  * `POST`: Performs resource-specific processing on the payload. Can be used for different actions including creating a new resource, uploading a file or submitting a web form.
+
+  * Bonus point: One other difference is that PUT should be idempotent — multiple PUTs of the same data to the same URL should be fine, whereas multiple POSTs might create multiple objects or whatever it is your POST action does.
+
+---
+
+* What are the differences between Long-Polling, Websockets and Server-Sent Events?
+  * `Long-polling` - opens an HTTP request and remains open until an update is received. Upon receiving an update, a new request is immediately opened awaiting the next update.
+  * `WebSockets` - The WebSocket protocol allows for constant, bi-directional communication between the server and client. For this test, Primus is used to abstract multiple implementations of the protocol.
+  * `Server-sent events` - rely on a long-lived HTTP connection, where updates are continuously sent to the client
+
+--- 
+
+* Explain the difference between cookies, session storage, and local storage?
+  * `Local Storage` as it’s called its local storage for your browsers, it can save up to 10MB, Session Storage does the same, but as its name saying, it’s session based and will be deleted after closing your browser. Sessions storage saves less up to 5mb.
+  * `Cookies` are very tiny data storing in your browser, that can save up 4KB and can be accessed through server or browser both
+
+* What is CORS?
+  * `CORS` stands for Cross-Origin Resource Sharing. 
+    * CORS is a browser mechanism which enables controlled access to resources located outside of a given domain. It extends and adds flexibility to the same-origin policy
