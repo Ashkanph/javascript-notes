@@ -823,3 +823,22 @@ console.log(Array(3).fill(6));   //  [6, 6, 6]
 * What is CORS?
   * `CORS` stands for Cross-Origin Resource Sharing. 
     * CORS is a browser mechanism which enables controlled access to resources located outside of a given domain. It extends and adds flexibility to the same-origin policy
+---
+
+* Math.round & Math.floor alternatives
+  * Math.floor() you can use 0|:
+    ```javascript
+    0|743.4343 // returns 743
+    Math.floor(743.4343) // returns 743
+    ```
+  * Math.round() you can use +.5|0 :
+    ```javascript
+    812.777+.5|0 // returns 813
+    Math.round(812.777) // returns 813
+    ```
+---
+* Multiple statements in if brlock without curly brackets: The trick is the comma!
+  ```javascript
+  if (1 === 1)
+  alert("Alert 1"), alert("Alert 2");
+  ```
