@@ -842,3 +842,16 @@ console.log(Array(3).fill(6));   //  [6, 6, 6]
   if (1 === 1)
   alert("Alert 1"), alert("Alert 2");
   ```
+---
+
+* Swap the values of 2 variables
+  ```javascript
+  let a = 1;
+  let b = 2;
+  [a, b] = [b, a];
+  // Result: 
+  // a = 2
+  // b = 1
+  ```
+
+
