@@ -102,6 +102,37 @@ We can also use the impl Trait syntax in the return position to return a value o
     }
     ```
 
+* Using Trait Bounds to Conditionally Implement Methods:
 
+```rust
+use std::fmt::Display;
 
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Pair<T> { // در اینجا تایپ تی همیشه متد نیو رو ایمپلنت می‌کنه
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {  // در اینجا تایپ تی فقط در صورتی متد سی‌ام‌دی‌دیسپلی رو ایمپلنت می‌کنه که اون تایپ داخلی تی، دیسپلی و پارتیال اوردر رو پیاده‌سازی کرده باشه (دومیش برای اینکه بشه مقایسه کرد)
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+```
+
+* `Blanket implementations`: We can also conditionally implement a trait for any type that implements another trait. Implementations of a trait on any type that satisfies the trait bounds are called blanket implementations and are extensively used in the Rust standard library. For example, the standard library implements the ToString trait on any type that implements the Display trait. The impl block in the standard library looks similar to this code:
+    ```rust
+    impl<T: Display> ToString for T {  // این ایمپلمنت فقط روی تایپ‌هایی از تی که دیسپلی رو پیاده‌سازی کردن قابل اجراست
+        // --snip--
+    }
+    ```
 
