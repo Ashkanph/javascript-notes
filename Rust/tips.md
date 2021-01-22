@@ -23,3 +23,12 @@
 * To cast a float to an integer, you can use as. For example: `let b = (a / 100_000.0) as i64;`
 
 * The assignment operator = in Rust can be chained: `a = b = 10;`
+
+* #[no_mangle] : برای اینکه نام تابع در بیلد تغییر نکند
+
+* Since a return statement makes the program jump somewhere, else, it's value can be anything, for example the following code cause no error:
+	```rust
+		fn main() {
+            let _a: String = return;
+        }
+	```
