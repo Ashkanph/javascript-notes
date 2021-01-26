@@ -24,3 +24,21 @@
 * `borrow checker`: The Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
 
 * `Lifetime elision rules`: الگوهایی هستند که به مرور فهمیدند در آنها همیشه باید لایف‌تایم برای رفرنس‌ها بکار رود و آنها را در کامپایلر گذاشتند تا دیگر نیازی به ذکر لایف‌تایم نباشد و خود کامپایلر حتی با نگذاشتن لایف‌تایم‌ها برایشان لایف‌تایم بگذارد
+
+* `primitive obsession`: Using primitive values when a complex type would be more appropriate is an anti-pattern known as `primitive obsession`.
+
+* `closure’s environment`: The enclosing scope of the closure
+
+* In Rust, iterators are `lazy`, meaning they have no effect until you call methods that consume the iterator to use it up.
+
+* Iterators are one of `Rust’s zero-cost abstractions`, by which we mean using the abstraction imposes no additional runtime overhead.
+
+* `recursive type`, where a value can have as part of itself another value of the same type.
+
+* `cons function`:
+    * “to cons x onto y” informally means to construct a new container instance by putting the element x at the start of this new container, followed by the container y.
+    * A `cons list` is produced by recursively calling the cons function.
+        * Each item: the value of the current item and the next item. 
+        * The last item in the list contains only a value called Nil without a next item
+
+* `interior mutability pattern`: Mutating the value inside an immutable value. (See `RefCell<T>`) 
