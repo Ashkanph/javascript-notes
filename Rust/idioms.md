@@ -41,4 +41,8 @@
         * Each item: the value of the current item and the next item. 
         * The last item in the list contains only a value called Nil without a next item
 
-* `interior mutability pattern`: Mutating the value inside an immutable value. (See `RefCell<T>`) 
+* `interior mutability pattern`: Mutating the value inside an immutable value. (See `RefCell<T>`)
+
+* The concept of `duck typing` in dynamically typed languages: if it walks like a duck and quacks like a duck, then it must be a duck!
+
+* The code that results from monomorphization is doing `static dispatch`, which is when the compiler knows what method you’re calling at compile time. This is opposed to `dynamic dispatch`, which is when the compiler can’t tell at compile time which method you’re calling. In `dynamic dispatch` cases, the compiler emits code that at runtime will figure out which method to call.
