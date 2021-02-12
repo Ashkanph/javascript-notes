@@ -46,3 +46,10 @@
 * The concept of `duck typing` in dynamically typed languages: if it walks like a duck and quacks like a duck, then it must be a duck!
 
 * The code that results from monomorphization is doing `static dispatch`, which is when the compiler knows what method you’re calling at compile time. This is opposed to `dynamic dispatch`, which is when the compiler can’t tell at compile time which method you’re calling. In `dynamic dispatch` cases, the compiler emits code that at runtime will figure out which method to call.
+
+* `Operator overloading` is customizing the behavior of an operator (such as +) in particular situations.
+
+* `thunk` is a word for code to be evaluated at a later time
+
+* A `thread pool` is a group of spawned threads that are waiting and ready to handle a task. When the program receives a new task, it assigns one of the threads in the pool to the task, and that thread will process the task. The remaining threads in the pool are available to handle any other tasks that come in while the first thread is processing. When the first thread is done processing its task, it’s returned to the pool of idle threads, ready to handle a new task. A thread pool allows you to process connections concurrently, increasing the throughput of your server.
+    * We’ll limit the number of threads in the pool to a small number to protect us from `Denial of Service (DoS) attacks`; if we had our program create a new thread for each request as it came in, someone making 10 million requests to our server could create havoc by using up all our server’s resources and grinding the processing of requests to a halt.
