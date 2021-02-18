@@ -1,5 +1,7 @@
 
 # Articles
+* [Idiomatic Rust](https://github.com/mre/idiomatic-rust)
+* [cheats.rs](https://cheats.rs)
 * About &str, String, Cow and Into
     * [String vs &str in Rust functions
 ](https://hermanradtke.com/2015/05/03/string-vs-str-in-rust-functions.html)
